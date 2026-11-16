@@ -1,0 +1,112 @@
+
+@use 'variable';
+
+.test {
+  color: variable.$color-text;
+}
+
+.inner {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ↓ここに処理を書く↓ */
+
+$maxWidth: 1000px;
+$brandColor: #cd6799;
+
+// Mixinの定義
+@mixin btn($color: #20aee5) {
+  display: block;
+  padding: 20px 30px;
+  color: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: $color;
+
+  text: {
+    decoration: none;
+    align: center;
+  }
+}
+
+.header {
+  max-width: $maxWidth;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin: 0 auto;
+  padding: 10px 0;
+
+  &__logo {
+    width: 80px;
+  }
+
+  h1 {
+    text-align: left;
+  }
+
+  &__list {
+    display: flex;
+
+    &__link {
+      text-decoration: none;
+      color: #666;
+
+      font: {
+        size: 16px;
+        weight: bold;
+      }
+
+      &:hover {
+        color: $brandColor;
+      }
+
+      & > li {
+        margin-left: 30px;
+
+        /* 擬似クラス */
+        &:first-child {
+          margin-left: 0;
+        }
+      }
+    }
+  }
+}
+
+.footer {
+  padding: 70px 0;
+
+  &__sns {
+    &__list {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+
+      & > li {
+        width: 32%;
+
+        &:nth-child(n+4) {
+          margin-top: 20px;
+        }
+      }
+    }
+
+    &__btn {
+      @include btn();
+
+      &.is-facebook {
+        @include btn(#4668b3);
+      }
+    }
+  }
+}

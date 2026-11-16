@@ -1,0 +1,90 @@
+
+@use 'variable';
+@use 'sass:list';
+
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  width: 400px;
+  margin: 0 auto;
+}
+
+// header
+.header {
+  width: 400px;
+  height: 100px;
+  background-color: variable.$navy;
+  padding: 20px;
+
+  &__boxes {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+
+    background-color: variable.$white;
+    padding: 10px;
+    width: 160px;
+    height: 60px;
+    margin-left: auto;
+
+    div {
+      width: 40px;
+      height: 40px;
+    }
+
+    @for $i from 1 through list.length(variable.$classNames) {
+  $className: list.nth(variable.$classNames, $i);
+
+      .#{$className} {
+        background-color: list.nth(variable.$buttonColor, $i);
+      }
+    }
+  }
+}
+
+// sidebarとmain
+.content {
+  display: flex;
+}
+
+.sidebar {
+  width: 150px;
+  height: 250px;
+  background-color: variable.$green;
+}
+
+// main
+.main {
+  width: 250px;
+  height: 250px;
+  background-color: variable.$red;
+
+  &__items {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 40px 0 0 40px;
+  }
+
+  &__box {
+    width: 150px;
+    height: 50px;
+    border: 5px solid variable.$white;
+  }
+
+  // リストのクラス名とカラーを対応させる
+  @for $i from 1 through list.length(variable.$classNames) {
+    .#{list.nth(variable.$classNames, $i)} {
+      background-color: list.nth(variable.$buttonColor, $i);
+    }
+  }
+}
+
+// footer
+.footer {
+  width: 400px;
+  height: 100px;
+  background-color: variable.$brown;
+}

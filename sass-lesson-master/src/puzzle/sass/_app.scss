@@ -35,13 +35,9 @@
     }
 
     @include mixin.colorStyle;
-
-      .#{$className} {
-        background-color: list.nth(variable.$buttonColor, $i);
-      }
-    }
   }
 }
+
 
 // sidebarとmain
 .content {

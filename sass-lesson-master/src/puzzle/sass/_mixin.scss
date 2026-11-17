@@ -1,0 +1,10 @@
+@use 'variable';
+@use 'sass:list';
+
+@mixin colorStyle {
+  @each $className, $color in variable.$classNames, variable.$buttonColor {
+    .#{$className} {
+      background-color: $color;
+    }
+  }
+}

@@ -1,6 +1,6 @@
-
 @use 'variable';
 @use 'sass:list';
+@use 'mixin';
 
 * {
   box-sizing: border-box;
@@ -34,8 +34,7 @@
       height: 40px;
     }
 
-    @for $i from 1 through list.length(variable.$classNames) {
-  $className: list.nth(variable.$classNames, $i);
+    @include mixin.colorStyle;
 
       .#{$className} {
         background-color: list.nth(variable.$buttonColor, $i);
@@ -75,11 +74,7 @@
   }
 
   // リストのクラス名とカラーを対応させる
-  @for $i from 1 through list.length(variable.$classNames) {
-    .#{list.nth(variable.$classNames, $i)} {
-      background-color: list.nth(variable.$buttonColor, $i);
-    }
-  }
+  @include mixin.colorStyle;
 }
 
 // footer

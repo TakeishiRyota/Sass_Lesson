@@ -2,8 +2,8 @@
 @use 'sass:list';
 
 @mixin colorStyle {
-  @for $i from 1 through list.length(variable.$classNames) {
-    $className: list.nth(variable.$classNames, $i);
+  @each $className in variable.$classNames {
+    $i: list.index(variable.$classNames, $className);
 
     .#{$className} {
       background-color: list.nth(variable.$buttonColor, $i);
